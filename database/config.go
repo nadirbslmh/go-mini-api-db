@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"go-mini-api-db/utils"
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -13,11 +14,11 @@ var DB *sql.DB
 func InitDB() {
 	dsn := fmt.Sprintf(
 		"%s:%s@tcp(%s:%s)/%s",
-		"root",
-		"",
-		"localhost",
-		"3306",
-		"learndocker",
+		utils.GetConfig("DB_USERNAME"),
+		utils.GetConfig("DB_PASSWORD"),
+		utils.GetConfig("DB_HOST"),
+		utils.GetConfig("DB_PORT"),
+		utils.GetConfig("DB_NAME"),
 	)
 
 	var err error
